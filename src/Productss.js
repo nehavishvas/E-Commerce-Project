@@ -9,7 +9,6 @@ const Productss = (props) => {
   return (
     <>
       {Product.map((prod) => {
-        const quickDetails = Object.entries(prod.itemDetails || {}).slice(0, 2);
         return (
           <Link
             to={`/product/${prod.id}`}
