@@ -12,11 +12,9 @@ import {
 const formatTimestamp = (value) =>
   value ? new Date(value).toLocaleString() : "Not available";
 
-const PaymentResultScreen = ({ match, location }) => {
+const PaymentResultScreen = ({ match }) => {
   const dispatch = useDispatch();
   const { orderId } = match.params;
-  const searchParams = new URLSearchParams(location.search);
-
   const transactionState = useSelector((state) => state.orders);
   const transaction = transactionState.transactionDetail;
   const paymentStatus = transaction?.paymentDetail?.paymentStatus || "";
