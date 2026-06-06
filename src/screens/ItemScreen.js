@@ -150,15 +150,7 @@ const ItemScreen = ({ match }) => {
               ))}
             </div>
           )}
-          {subcategory?.meta.highlights?.length > 0 && (
-            <div className="detail-chip-row">
-              {subcategory.meta.highlights.map((highlight) => (
-                <span key={highlight} className="detail-chip">
-                  {highlight}
-                </span>
-              ))}
-            </div>
-          )}
+
           <div className="hero-action-row">
             <button type="button" className="secondary" onClick={resetFilters}>
               Clear filters
@@ -350,28 +342,7 @@ const ItemScreen = ({ match }) => {
               {item.description ? (
                 <p className="item-group-copy">{item.description}</p>
               ) : null}
-              {item.highlights?.length > 0 && (
-                <div className="detail-chip-row">
-                  {item.highlights.map((highlight) => (
-                    <span key={highlight} className="detail-chip">
-                      {highlight}
-                    </span>
-                  ))}
-                </div>
-              )}
-              {item.gallery?.length > 0 && (
-                <div className="catalog-image-strip">
-                  {item.gallery.slice(0, 4).map((image) => (
-                    <SmartImage
-                      key={image}
-                      src={image}
-                      alt={item.name}
-                      fallbackLabel={item.name}
-                      className="catalog-strip-image"
-                    />
-                  ))}
-                </div>
-              )}
+
               <div className="raw center">
                 <Productss Product={item.products} />
               </div>
