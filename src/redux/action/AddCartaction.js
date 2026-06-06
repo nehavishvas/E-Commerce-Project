@@ -119,6 +119,21 @@ export const startPaymentCheckout =
         throw new Error("Razorpay is not configured on the server");
       }
 
+      if (paymentConfig.provider === "mock") {
+        const mockResponse = {
+          razorpay_payment_id: `pay_mock_${Date.now()}`,
+          razorpay_order_id: data.razorpayOrderId,
+          razorpay_signature: "mock_signature",
+        };
+        const verification = await api.post("/payments/verify", mockResponse);
+        dispatch({
+          type: constant.PAYMENT_CONFIRM_SUCCESS,
+          payload: verification.data,
+        });
+        history.replace(`/payment/success/${verification.data.id}`);
+        return;
+      }
+
       const scriptLoaded = await ensureRazorpayScript();
       if (!scriptLoaded) {
         throw new Error("Unable to load Razorpay Checkout");

@@ -41,23 +41,7 @@ const PaymentResultScreen = ({ match, location }) => {
       ) : (
         <div className="payment-result-stack">
           <section className={`payment-result-hero ${isSuccess ? "success" : "failed"}`}>
-            <div>
-              <span className="section-label">
-                {isSuccess ? "Payment Success" : "Payment Update"}
-              </span>
-              <h1 className="page-title">
-                {isSuccess
-                  ? `Order #${transaction.order.id} was paid successfully.`
-                  : `Order #${transaction.order.id} was not completed.`}
-              </h1>
-              <p className="page-subtitle">
-                {isSuccess
-                  ? "The transaction is confirmed in the backend and your order is now in the completed order flow."
-                  : transaction.paymentDetail.failureReason ||
-                    fallbackReason ||
-                    "The payment did not complete. Review the transaction details below and retry from checkout if needed."}
-              </p>
-            </div>
+
             <div className="payment-result-actions">
               {isSuccess ? (
                 <>
@@ -121,18 +105,7 @@ const PaymentResultScreen = ({ match, location }) => {
             </div>
           </section>
 
-          <section className="detail-card">
-            <p className="eyebrow">Timeline</p>
-            <div className="timeline-list">
-              {transaction.timeline.map((entry) => (
-                <div key={`${entry.label}-${entry.at || "na"}`} className={`timeline-entry ${entry.status}`}>
-                  <strong>{entry.label}</strong>
-                  <span>{formatTimestamp(entry.at)}</span>
-                  <p>{entry.detail}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+
 
           <section className="detail-card">
             <p className="eyebrow">Items and Delivery</p>

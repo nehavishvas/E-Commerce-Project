@@ -102,118 +102,24 @@ const SubcategoryScreen = ({ match }) => {
               <Link
                 key={entry.slug}
                 to={`/catalog/${category.slug}/${entry.slug}`}
-                className="catalog-tile"
+                className="catalog-tile simple-tile"
               >
-                <div className="catalog-tile-top">
-                  <div>
-                    <p className="eyebrow">Subcategory</p>
-                    <h2>{entry.name}</h2>
-                    <p className="catalog-copy">{entry.meta.description}</p>
-                  </div>
-                  {entry.meta.featuredProduct?.image && (
-                    <SmartImage
-                      src={entry.meta.featuredProduct.image}
-                      alt={entry.meta.featuredProduct.name}
-                      fallbackLabel={entry.meta.featuredProduct.name}
-                      className="catalog-thumb"
-                    />
-                  )}
+                <div className="catalog-tile-image-container">
+                  <SmartImage
+                    src={entry.meta.featuredProduct?.image || entry.meta.showcaseImages?.[0]}
+                    alt={entry.name}
+                    fallbackLabel={entry.name}
+                    className="catalog-tile-image"
+                  />
                 </div>
-                <div className="catalog-meta-grid">
-                  <div>
-                    <strong>{entry.meta.itemCount}</strong>
-                    <span>Item groups</span>
-                  </div>
-                  <div>
-                    <strong>{entry.meta.productCount}</strong>
-                    <span>Products</span>
-                  </div>
-                  <div>
-                    <strong>{entry.meta.inStockCount}</strong>
-                    <span>In stock</span>
-                  </div>
-                  <div>
-                    <strong>
-                      ₹{entry.meta.minPrice.toLocaleString("en-IN")} - ₹
-                      {entry.meta.maxPrice.toLocaleString("en-IN")}
-                    </strong>
-                    <span>Price range</span>
-                  </div>
+                <div className="catalog-tile-content">
+                  <h2>{entry.name}</h2>
+                  <p className="catalog-copy">{entry.meta.description}</p>
                 </div>
-                <p className="catalog-brands">
-                  Brands: {entry.meta.brands.join(", ")}
-                </p>
-                {entry.meta.topItems?.length > 0 && (
-                  <div className="detail-chip-row">
-                    {entry.meta.topItems.map((item) => (
-                      <span key={item} className="detail-chip">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                <div className="catalog-image-strip">
-                  {entry.meta.showcaseImages.map((image) => (
-                    <SmartImage
-                      key={image}
-                      src={image}
-                      alt={entry.name}
-                      fallbackLabel={entry.name}
-                      className="catalog-strip-image"
-                    />
-                  ))}
+                <div className="catalog-tile-footer">
+                  <span>{entry.meta.productCount} Products</span>
+                  <span>From ₹{entry.meta.minPrice.toLocaleString("en-IN")}</span>
                 </div>
-                {entry.meta.itemSpotlights?.length > 0 && (
-                  <div className="mini-card-grid">
-                    {entry.meta.itemSpotlights.map((item) => (
-                      <div key={item.slug} className="mini-card">
-                        {item.image && (
-                          <SmartImage
-                            src={item.image}
-                            alt={item.name}
-                            fallbackLabel={item.name}
-                            className="mini-card-image"
-                          />
-                        )}
-                        <strong>{item.name}</strong>
-                        <span>{item.productCount} products</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {entry.meta.heroStats?.length > 0 && (
-                  <div className="inline-stat-row">
-                    {entry.meta.heroStats.map((stat) => (
-                      <div key={stat.label} className="inline-stat-card">
-                        <strong>{stat.value}</strong>
-                        <span>{stat.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {entry.meta.shopperNotes?.length > 0 && (
-                  <div className="catalog-note-list">
-                    {entry.meta.shopperNotes.map((note) => (
-                      <span key={note}>{note}</span>
-                    ))}
-                  </div>
-                )}
-                {entry.meta.facts?.length > 0 && (
-                  <div className="catalog-fact-list">
-                    {entry.meta.facts.map((fact) => (
-                      <span key={fact}>{fact}</span>
-                    ))}
-                  </div>
-                )}
-                {entry.meta.highlights.length > 0 && (
-                  <div className="catalog-highlight-row">
-                    {entry.meta.highlights.map((highlight) => (
-                      <span key={highlight} className="catalog-highlight-pill">
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </Link>
             ))}
           </div>
