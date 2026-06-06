@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingBox } from "../componenet/LoadingBox";
 import { MassageBox } from "../componenet/MassageBox";
-import SmartImage from "../componenet/SmartImage";
+
 import Productss from "../Productss";
 import { ListProduct, loadCatalog } from "../redux/action/action";
 import { findCategoryNode, findSubcategoryNode } from "./catalogUtils";
