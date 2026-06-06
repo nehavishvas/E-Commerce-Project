@@ -26,26 +26,9 @@ const Productss = (props) => {
               />
             </div>
             <div className="card-body">
-              <span className="card-path">
-                {prod.category} / {prod.subcategory}
-              </span>
               <span className="card-brand">{prod.brand}</span>
-              <span className="card-item-label">{prod.itemName}</span>
               <h2>{prod.name}</h2>
               <Rating rating={prod.rating} numReviews={prod.numReviews} />
-              <div className="card-review-line">
-                {prod.numReviews || 0} reviews
-              </div>
-              <div className="description">{prod.description}</div>
-              {quickDetails.length > 0 && (
-                <div className="card-detail-row">
-                  {quickDetails.map(([key, value]) => (
-                    <span key={key} className="card-detail-pill">
-                      {String(value)}
-                    </span>
-                  ))}
-                </div>
-              )}
               <div className="price">
                 <span className="currency">₹</span>
                 {prod.price ? prod.price.toLocaleString("en-IN") : "N/A"}

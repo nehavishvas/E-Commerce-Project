@@ -183,12 +183,7 @@ const AuthScreen = ({ history, location }) => {
               >
                 Continue with GitHub
               </button>
-              {!auth.githubConfig?.enabled && (
-                <div className="demo-box">
-                  Set `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` on the backend to
-                  enable GitHub signup/signin.
-                </div>
-              )}
+
             </>
           )}
 

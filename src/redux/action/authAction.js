@@ -83,7 +83,11 @@ export const loadGitHubAuthConfig = (redirect = "/") => async (dispatch) => {
     });
     dispatch({ type: constant.AUTH_GITHUB_CONFIG_SUCCESS, payload: data });
   } catch (err) {
-    dispatch({ type: constant.AUTH_FAIL, payload: getErrorMessage(err) });
+    if (err.response && err.response.status === 404) {
+      dispatch({ type: constant.AUTH_GITHUB_CONFIG_SUCCESS, payload: { enabled: false } });
+    } else {
+      dispatch({ type: constant.AUTH_FAIL, payload: getErrorMessage(err) });
+    }
   }
 };
 
