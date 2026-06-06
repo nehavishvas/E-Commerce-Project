@@ -16,7 +16,7 @@ const PaymentResultScreen = ({ match, location }) => {
   const dispatch = useDispatch();
   const { orderId } = match.params;
   const searchParams = new URLSearchParams(location.search);
-  const fallbackReason = searchParams.get("reason") || "";
+
   const transactionState = useSelector((state) => state.orders);
   const transaction = transactionState.transactionDetail;
   const paymentStatus = transaction?.paymentDetail?.paymentStatus || "";
